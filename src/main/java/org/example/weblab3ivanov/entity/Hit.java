@@ -1,4 +1,4 @@
-package org.example.weblab3finale.entity;
+package org.example.weblab3ivanov.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,8 @@ import java.time.format.DateTimeFormatter;
 
 import static java.lang.Math.pow;
 
-@Entity
+// поле name = X задает имя таблицы как Х, а не аналогичное названию класса
+@Entity(name = "hits")
 public class Hit {
 
     @Id
@@ -88,12 +89,12 @@ public class Hit {
     }
 
     private boolean rectangle(double x, double y, double r) {
-        return (x >= 0) && (y <= 0) && (x <= r) && (y >= -(r));
+        return (x >= 0) && (y >= 0) && (x <= r) && (y <= r / 2);
     }
 
-    private boolean circle(double x, double y, double r) {return (x <= 0) && (y <= 0) && (pow(x, 2) + pow(y, 2) <= (pow(r, 2)));}
+    private boolean circle(double x, double y, double r) {return (x <= 0) && (y >= 0) && (pow(x, 2) + pow(y, 2) <= (pow(r / 2, 2)));}
 
-    private boolean triangle(double x, double y, double r) {return (x <= 0) && (y >= 0) && (y <= (2 * x + r));}
+    private boolean triangle(double x, double y, double r) {return (x >= 0) && (y <= 0) && (y >= (x / 2 - r / 2));}
 
     public void checkHit() {
         if (rectangle(x, y, r) || circle(x, y, r) || triangle(x, y, r)) {

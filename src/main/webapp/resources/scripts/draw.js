@@ -77,21 +77,22 @@ function drawAxes(){
 
     graph.append('rect')
         .attr('x', 150)
-        .attr('y', 150)
+        .attr('y', 150 - 29 * R / 2)
         .attr('width', 29 * R)
-        .attr('height', 29 * R)
+        .attr('height', 29 * R / 2)
         .attr('fill-opacity', 0.4)
         .attr('stroke', '#51b1e3')
         .attr('fill', '#51b1e3')
 
     graph.append('polygon')
-        .attr('points', `${150 - R * 29 / 2},150 150,${150 - R * 29} 150,150`)
+        .attr('points', `150,150 150,${150 + R / 2 * 29} ${150 + R * 29},150`)
         .attr('fill-opacity', 0.4)
         .attr('stroke', '#51b1e3')
         .attr('fill', '#51b1e3')
 
     graph.append('path')
-        .attr('d', `M ${150 - R * 29} 150 A ${R * 29} ${R * 29}, 0, 0, 0, 150 ${150 + R * 29} L 150 150 Z`)
+        .attr('d', `M ${150 - R / 2 * 29} 150
+           A ${R / 2 * 29} ${R / 2 * 29}, 0, 0, 1, 150 ${150 - R / 2 * 29} L 150 150 Z`)
         .attr('fill-opacity', 0.4)
         .attr('stroke', '#51b1e3')
         .attr('fill', '#51b1e3')

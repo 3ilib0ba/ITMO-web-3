@@ -1,12 +1,31 @@
+
+function buttonX(valueX) {
+    var field = document.getElementById(`main_form:x_buttons`);
+    console.log(field);
+    field.setAttribute("value", valueX);// = valueX;
+    //console.log(document.getElementById("x_buttons"));//.getAttribute("value"));
+    return false;
+}
+
+function validateX() {
+    // if (document.querySelector('input[name="j_idt6:coordinateX"]:checked') !== null) {
+    //     //X = document.querySelector('input[name="coordinateX"]:checked').value;
+    // } else {
+    //     alert("X value must be selected;");
+    //     return false;
+    // }
+    return true;
+}
+
 function changeR(){
-    let r = document.getElementById(`j_idt6:rSpinner_input`);
+    let r = document.getElementById(`main_form:rSpinner_input`);
     R = r.attributes.getNamedItem("aria-valuenow").value;
     drawAxes();
     drawPoints();
 }
 
 function validateY() {
-    let y = document.getElementById(`j_idt6:yValue`);
+    let y = document.getElementById(`main_form:yValue`);
     if (y.value.trim() === "") {
         alert("Y value must not be null;");
         return false;

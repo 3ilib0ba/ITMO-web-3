@@ -1,7 +1,7 @@
-package org.example.weblab3finale.bean;
+package org.example.weblab3ivanov.bean;
 
-import org.example.weblab3finale.entity.Hit;
-import org.example.weblab3finale.utils.HibernateSessionFactoryUtil;
+import org.example.weblab3ivanov.entity.Hit;
+import org.example.weblab3ivanov.utils.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

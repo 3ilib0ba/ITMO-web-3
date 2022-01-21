@@ -8,9 +8,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <link rel="stylesheet" href="resources/decorations/style.css"/>
-    <link rel="icon" type="image/png" href="resources/decorations/pic.png"/>
-    <meta name="author" content="petuch03"/>
+    <link rel="stylesheet" href="resources/css/main.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>web-lab-3-finale</title>
 </h:head>
@@ -18,18 +16,23 @@
 <h:body onload="svgInit(); drawPoints();">
     <div class="wrapper">
         <div id="header">
-            Safronov Egor Mikhailovich P3213, Task 5698
+            Иванов Евгений Дмитриевич Группа 3213 Вариант 13610
         </div>
         <div id="checkForm">
-            <h:form>
+            <h:form id="main_form">
                 <div class="xLocator">
                     <div id="area_x" class="box">
-                        <p><h:outputLabel class="center" for="xSpinner" value="Choose your X value:"/></p>
-                        <p:spinner id="xSpinner" class="xValue" name="xVal" value="#{hitBean.hit.x}" min="-5" max="5"
-                                   stepFactor="1">
-                            <f:validateRequired/>
-                            <f:validateDoubleRange minimum="-5" maximum="5"/>
-                        </p:spinner>
+                        <h:inputHidden id="x_buttons" value="#{hitBean.hit.x}"/>
+                        <p><h:outputLabel class="center" for="coordinateX" value="Choose your X value:"/></p>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(-2)" value="-2"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(-1.5)" value="-1.5"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(-1)" value="-1"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(-0.5)" value="-0.5"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(0)" value="0"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(0.5)" value="0.5"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(1)" value="1"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(1.5)" value="1.5"/>
+                        <h:commandButton type="button" name = "coordinateX" onclick="return buttonX(2)" value="2"/>
                     </div>
                 </div>
 
@@ -59,7 +62,7 @@
                     <div id="area_r" class="box">
                         <p><label class="center">Choose your R value:</label></p>
                         <p:spinner id="rSpinner" class="rValue" name="rVal" value="#{hitBean.hit.r}" min="1" max="3"
-                                   stepFactor="0.5" onchange="changeR()">
+                                   stepFactor="0.1" onchange="changeR()">
                             <f:validateRequired/>
                             <f:validateDoubleRange minimum="1" maximum="3"/>
                         </p:spinner>
@@ -69,7 +72,9 @@
                 <div class="sLocator">
                     <div id="area_submit">
                         <h:messages style="color:red;margin:8px;"/>
-                        <h:commandButton id="submitButton" action="#{hitBean.addHit}" value="submit" onclick="validateY()">
+                        <h:commandButton styleClass="animated-word" id="submitButton"
+                                         action="#{hitBean.addHit}" value="submit"
+                                         onclick="validateY(); validateX();">
                             <f:ajax execute="@form" render="resTable" onevent="
                                 (data) => {
                                     if (data.status === 'success') {
@@ -90,8 +95,8 @@
                             <th>y</th>
                             <th>r</th>
                             <th>result</th>
-                            <th>exec</th>
-                            <th>time</th>
+                            <th>execute_time</th>
+                            <th>local_time</th>
                         </tr>
                         <ui:repeat value="#{hitBean.hits}" var="hit">
                             <tr>
@@ -114,7 +119,7 @@
         </div>
 
         <h:link id="back" outcome="toIndex">
-            <button id="back_button" type="submit">
+            <button id="back_button" type="submit" class="animated-word">
                 <b>to index</b>
             </button>
         </h:link>

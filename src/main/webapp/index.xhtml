@@ -3,26 +3,28 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <link rel="stylesheet" href="resources/decorations/style.css"/>
-    <link rel="icon" type="image/png" href="resources/decorations/pic.png"/>
-    <meta name="author" content="petuch03"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <title>ITMO-lab-3</title>
 </h:head>
 
-<h:body>
-    <h2>index</h2>
-
-    <div id="clock"></div>
+<h:body style="
+    font-size: 20px;
+    min-width: 50%;
+    background-image: url('resources/decorations/corgi.jpg');
+    background-size: 100%;
+    background-repeat: repeat-y, no-repeat;">
+    <h:outputText styleClass="biba" value="Иванов Евгений Дмитриевич Группа 3213 Вариант 13610"/>
+    <br/><br/>
+    <h:outputText id="clock" styleClass="clock" value="Текущее время: #{clocks.dateTime}"/>
     <br/>
-    <h:link id="start" outcome="toMain">
-        <button type="submit">
-            to main
+    <p:poll interval="6" listener="#{clocks.updateTime}" update="clock"> </p:poll>
+    <br/>
+    <h:link id="to_main_page_button" outcome="toMain">
+        <button class="animated-word center" type="submit">
+            Качественный контент
         </button>
     </h:link>
-
 </h:body>
-<h:outputScript library="scripts" name="time.js"/>
 </html>
