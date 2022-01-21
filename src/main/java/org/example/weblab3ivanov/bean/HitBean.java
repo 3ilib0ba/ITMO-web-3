@@ -18,8 +18,8 @@ import java.util.List;
 public class HitBean implements Serializable {
 
     private Hit hit = new Hit();
-    private List<Hit> hits = new ArrayList<>();
     private Session session = createSession();
+    private List<Hit> hits = new ArrayList<>();
 
     public Hit getHit() {
         return hit;
@@ -31,6 +31,18 @@ public class HitBean implements Serializable {
 
     public List<Hit> getHits() {
         List<Hit> outputHits = new ArrayList<>(hits);
+
+        try {
+            Transaction transaction = session.beginTransaction();
+            outputHits = (List<Hit>) session.createQuery("from hits").list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (outputHits == null) {
+            new ArrayList<>(hits);
+        }
+
         Collections.reverse(outputHits);
         return outputHits;
     }
