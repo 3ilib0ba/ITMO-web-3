@@ -59,7 +59,7 @@
   отдельном конфигурационном файле.
 ---
   
-https://se.ifmo.ru/courses/web?p_p_id=iapsportletlab8_WAR_iapsportlet&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage?1643653120553
+![image](https://user-images.githubusercontent.com/51972750/151850346-4a41013c-447b-4c59-a3c3-72f55e1a6099.png)
 
 ---
   
